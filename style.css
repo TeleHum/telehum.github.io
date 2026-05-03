@@ -23,12 +23,14 @@
 
 html {
   overflow-x: hidden;
+  overflow-x: clip;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
   overflow-x: hidden;
+  overflow-x: clip;
   background: var(--bg);
   color: var(--text);
   font-family: "Noto Sans", "Segoe UI", Arial, Helvetica, sans-serif;
@@ -328,7 +330,7 @@ figcaption {
 .carousel-viewport {
   width: 100%;
   overflow: visible;
-  clip-path: inset(-120px -120px -140px -120px);
+  clip-path: inset(-120px 0 -140px 0);
 }
 
 .carousel-track {
@@ -363,6 +365,7 @@ figcaption {
 }
 
 .figure-card {
+  width: min(calc(100% - 72px), var(--desktop));
   max-width: var(--desktop);
   margin: 0 auto;
   overflow: hidden;
@@ -469,6 +472,7 @@ figcaption {
 }
 
 .bibtex-block {
+  max-width: 100%;
   overflow-x: auto;
   margin: 0;
   border: 1px solid var(--border);
@@ -480,6 +484,8 @@ figcaption {
   font-size: 0.93rem;
   line-height: 1.55;
   text-align: left;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
 
 code {
@@ -587,6 +593,7 @@ code {
   }
 
   .figure-card {
+    width: min(calc(100% - 28px), var(--desktop));
     padding: 0.55rem;
   }
 
