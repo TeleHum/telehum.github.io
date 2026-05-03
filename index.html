@@ -150,16 +150,17 @@
         <div class="columns is-centered has-text-centered">
           <div class="column is-full-width">
             <h2 id="video-title" class="title is-3">Data Collection Video</h2>
-            <p class="section-lead">A local video demonstration of the data collection procedure can be placed here.</p>
+            <p class="section-lead">A demonstration of the TeleHum data collection procedure and human-in-the-loop teleoperation setup.</p>
             <div class="video-card">
-              <video class="demo-video" data-demo-video controls preload="metadata" poster="assets/fig_data_collection_procedure.png">
-                <source src="assets/data-collection-demo.mp4" type="video/mp4">
+              <video class="demo-video" data-demo-video controls preload="auto" muted playsinline>
+                <source src="assets/data_collect_process.mp4" type="video/mp4">
+                Your browser does not support embedded MP4 video.
               </video>
               <div class="video-placeholder">
-                Video placeholder: add data-collection-demo.mp4 under assets/.
+                Video preview unavailable.
               </div>
             </div>
-            <p class="video-caption">Place the collection-process video at <code>assets/data-collection-demo.mp4</code> to show it in this section.</p>
+            <p class="video-caption">The recorded collection process shows the operator-side leader-arm control, networked teleoperation loop, and run-level data collection workflow used by TeleHum.</p>
           </div>
         </div>
       </div>
@@ -219,6 +220,24 @@
 
           if (demoVideo.readyState >= 1) {
             videoCard.classList.add("has-video");
+          }
+
+          if ("IntersectionObserver" in window) {
+            const videoObserver = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  demoVideo.play().catch(() => {
+                    // Some browsers block autoplay until the user interacts with the page.
+                  });
+                } else {
+                  demoVideo.pause();
+                }
+              });
+            }, {
+              threshold: 0.45
+            });
+
+            videoObserver.observe(demoVideo);
           }
         }
 

@@ -282,6 +282,7 @@ figcaption {
 .results-carousel {
   position: relative;
   overflow: visible;
+  isolation: isolate;
 }
 
 .carousel-tabs {
@@ -323,20 +324,31 @@ figcaption {
 }
 
 .carousel-viewport {
-  overflow: hidden;
   width: 100%;
+  overflow: visible;
+  clip-path: inset(-120px -120px -140px -120px);
 }
 
 .carousel-track {
   display: flex;
   width: 100%;
   transition: transform 360ms ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .carousel-slide {
+  position: relative;
   min-width: 100%;
   flex: 0 0 100%;
-  padding: 0.3rem;
+  padding: 1.4rem 1.2rem 1.65rem;
+  visibility: hidden;
+  z-index: 0;
+}
+
+.carousel-slide.is-active {
+  visibility: visible;
+  z-index: 2;
 }
 
 .carousel-slide h3 {
@@ -357,6 +369,19 @@ figcaption {
   padding: 0.75rem;
   background: #ffffff;
   box-shadow: var(--shadow);
+  backface-visibility: hidden;
+  cursor: zoom-in;
+  transform: translateZ(0) scale(1);
+  transform-origin: center;
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.carousel-slide:hover .figure-card,
+.figure-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 24px 32px -8px rgba(15, 23, 42, 0.22), 0 14px 24px -16px rgba(15, 23, 42, 0.3);
+  transform: translateZ(0) scale(1.06);
 }
 
 .figure-card img {
@@ -607,6 +632,10 @@ code {
     font-size: 1.15rem;
   }
 
+  .carousel-slide {
+    padding: 1rem 0.65rem 1.15rem;
+  }
+
   .figure-card {
     padding: 0.55rem;
   }
@@ -639,11 +668,14 @@ code {
 
 @media (prefers-reduced-motion: reduce) {
   .carousel-track,
-  .button {
+  .button,
+  .figure-card {
     transition: none;
   }
 
-  .button.is-dark:hover {
+  .button.is-dark:hover,
+  .carousel-slide:hover .figure-card,
+  .figure-card:hover {
     transform: none;
   }
 }
