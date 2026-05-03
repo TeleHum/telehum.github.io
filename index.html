@@ -145,27 +145,6 @@
       </div>
     </section>
 
-    <section class="section video-section" aria-labelledby="video-title">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-          <div class="column is-full-width">
-            <h2 id="video-title" class="title is-3">Data Collection Video</h2>
-            <p class="section-lead">A demonstration of the TeleHum data collection procedure and human-in-the-loop teleoperation setup.</p>
-            <div class="video-card">
-              <video class="demo-video" data-demo-video controls preload="auto" muted playsinline>
-                <source src="assets/data_collect_process.mp4" type="video/mp4">
-                Your browser does not support embedded MP4 video.
-              </video>
-              <div class="video-placeholder">
-                Video preview unavailable.
-              </div>
-            </div>
-            <p class="video-caption">The recorded collection process shows the operator-side leader-arm control, networked teleoperation loop, and run-level data collection workflow used by TeleHum.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <section id="arxiv" class="section">
       <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
@@ -205,42 +184,6 @@
 
     <script>
       (() => {
-        const demoVideo = document.querySelector("[data-demo-video]");
-
-        if (demoVideo) {
-          const videoCard = demoVideo.closest(".video-card");
-
-          demoVideo.addEventListener("loadedmetadata", () => {
-            videoCard.classList.add("has-video");
-          });
-
-          demoVideo.addEventListener("error", () => {
-            videoCard.classList.remove("has-video");
-          });
-
-          if (demoVideo.readyState >= 1) {
-            videoCard.classList.add("has-video");
-          }
-
-          if ("IntersectionObserver" in window) {
-            const videoObserver = new IntersectionObserver((entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  demoVideo.play().catch(() => {
-                    // Some browsers block autoplay until the user interacts with the page.
-                  });
-                } else {
-                  demoVideo.pause();
-                }
-              });
-            }, {
-              threshold: 0.45
-            });
-
-            videoObserver.observe(demoVideo);
-          }
-        }
-
         const carousel = document.querySelector("[data-carousel]");
 
         if (!carousel) {

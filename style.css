@@ -22,11 +22,13 @@
 }
 
 html {
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background: var(--bg);
   color: var(--text);
   font-family: "Noto Sans", "Segoe UI", Arial, Helvetica, sans-serif;
@@ -404,58 +406,6 @@ figcaption {
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
-}
-
-.video-section {
-  background: var(--section-bg);
-}
-
-.video-card {
-  position: relative;
-  max-width: var(--desktop);
-  margin: 0 auto;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 0.75rem;
-  background: #ffffff;
-  box-shadow: var(--shadow);
-}
-
-.demo-video {
-  display: block;
-  width: 100%;
-  border-radius: 10px;
-  background: #eef2f7;
-}
-
-.video-placeholder {
-  position: absolute;
-  inset: 0.75rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px dashed var(--border-strong);
-  border-radius: 10px;
-  padding: 2rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(238, 242, 247, 0.94));
-  color: var(--soft);
-  font-size: 1rem;
-  font-weight: 700;
-  text-align: center;
-  pointer-events: none;
-}
-
-.video-card.has-video .video-placeholder {
-  display: none;
-}
-
-.video-caption {
-  max-width: 850px;
-  margin: 0.9rem auto 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.55;
 }
 
 .carousel-control {
