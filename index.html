@@ -32,6 +32,12 @@
                     <span>arXiv</span>
                   </a>
                 </span>
+                <span class="link-block">
+                  <a class="button is-normal is-rounded is-dark" href="https://drive.google.com/drive/folders/105xzkEORibugszrBDE9GUO8j4-mZ4-CN?usp=sharing">
+                    <img src="assets/googledrive.svg" alt="" class="button-icon" aria-hidden="true">
+                    <span>Recordings</span>
+                  </a>
+                </span>
               </div>
             </div>
           </div>
@@ -145,6 +151,30 @@
       </div>
     </section>
 
+    <section class="section video-section" aria-labelledby="video-title">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-full-width">
+            <h2 id="video-title" class="title is-3">Platform and Data Collection Demo</h2>
+            <p class="section-lead">A short demonstration of the TeleHum platform workflow and run-level data collection process.</p>
+
+            <figure class="video-card">
+              <video
+                class="demo-video"
+                src="https://github.com/TeleHum/telehum.github.io/releases/download/site-video-v1/video.mp4"
+                controls
+                muted
+                playsinline
+                preload="metadata"
+                data-autoplay-video
+              ></video>
+              <figcaption>The demo shows how the teleoperation platform is used and how synchronized network, behavior, and subjective data are collected for each run.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="arxiv" class="section">
       <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
@@ -244,6 +274,48 @@
 
         setActiveSlide(0);
         startTimer();
+      })();
+
+      (() => {
+        const videos = Array.from(document.querySelectorAll("[data-autoplay-video]"));
+
+        if (!videos.length) {
+          return;
+        }
+
+        const playVideo = (video) => {
+          const playPromise = video.play();
+
+          if (playPromise) {
+            playPromise.catch(() => {
+              video.controls = true;
+            });
+          }
+        };
+
+        if (!("IntersectionObserver" in window)) {
+          videos.forEach(playVideo);
+          return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const video = entry.target;
+
+            if (entry.isIntersecting) {
+              playVideo(video);
+            } else {
+              video.pause();
+            }
+          });
+        }, {
+          threshold: 0.45
+        });
+
+        videos.forEach((video) => {
+          video.muted = true;
+          observer.observe(video);
+        });
       })();
     </script>
   </body>
