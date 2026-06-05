@@ -12,12 +12,11 @@
         <div class="container is-max-desktop">
           <div class="columns is-centered">
             <div class="column has-text-centered">
-              <p class="publication-venue">ACM IMWUT / UbiComp Artifact</p>
               <h1 class="title is-1 publication-title">TeleHum: An Open-Source Platform and Dataset for Human-Centered Networked Robotic Teleoperation</h1>
               <div class="is-size-5 publication-authors">
                 <span class="author-block">Anonymous Authors</span>
               </div>
-              <p class="publication-subtitle">An anonymized supplementary project page for human-centered networked robotic teleoperation.</p>
+              <p class="publication-subtitle">An anonymous project page for human-centered networked robotic teleoperation.</p>
 
               <div class="publication-links" aria-label="Project links">
                 <span class="link-block">
@@ -52,7 +51,7 @@
             <h2 class="title is-3">Abstract</h2>
             <div class="content has-text-justified">
               <p>
-                Networked robotic teleoperation is increasingly important for applications such as remote manipulation, assistive robotics, hazardous-environment operation, and cloud/edge robotic control. However, existing teleoperation platforms and datasets often study robot behavior, network conditions, and human subjective perception separately, making it difficult to analyze how communication impairments affect human-in-the-loop robotic performance. We present TeleHum, an open-source, network-instrumented platform and run-level dataset for human-centered robotic teleoperation. The platform integrates a LeRobot SO101 leader arm, ROS 2, a custom-modified 5G testbed, MuJoCo simulation, gNB-side KPI logging, ROS bag recording, and post-task subjective ratings. The dataset contains 72 runs from 24 users teleoperating a MuJoCo pick-and-place task over a real 5G network, with additional application-side injected delays of 0 ms, 300 ms, and 600 ms. Each run is associated with synchronized 5G network-side logs, ROS 2 behavior traces, metadata, and custom 14-item post-task subjective ratings. In total, TeleHum includes 9.72 million KPI rows with 52 columns, 615,236 ROS bag messages across all topics, and 1,008 subjective questionnaire responses, with 100% run-level completeness across all expected KPI files and ROS bag metadata. These data enable concrete analyses such as quantifying delay-induced degradation in task performance, correlating gNB-side wireless KPIs with robot motion behavior, comparing user-perceived workload and control quality under different delay conditions, and developing network-aware teleoperation policies or adaptive control strategies. We release the complete platform implementation and dataset, including code, hardware deployment instructions, and data-processing workflows, to support future research on human-centered networked robotic teleoperation at https://telehum.github.io.
+                Networked robotic teleoperation is a cross-layer CPS problem, yet reusable artifacts often separate wireless context, middleware behavior, robot execution traces, and operator-facing outcomes. We present TeleHum, an open-source 5G network-instrumented robotic teleoperation platform and run-level dataset that combines an SO101 leader arm, ROS 2, an OpenAirInterface-based 5G testbed, MuJoCo follower simulation, gNB-side KPI logging, ROS bag recording, metadata, and post-task ratings. The dataset contains 72 runs from 24 users under 0 ms, 300 ms, and 600 ms application-side injected-delay conditions, with 9.7 million KPI rows across 52 columns, 615,236 ROS bag messages, and 1,008 item-level subjective ratings. We demonstrate a compact dataset workflow that checks completeness, aligns gNB and ROS 2 records, summarizes representative gNB KPI fields, extracts active-motion behavior metrics, and links behavior with ratings. The delays are injected into the operator command stream and are not measured 5G round-trip times. We release the complete platform implementation and dataset, including code, hardware deployment instructions, and data-processing workflows, at https://telehum.github.io.
               </p>
             </div>
           </div>
@@ -69,10 +68,8 @@
 
             <div class="results-carousel" data-carousel>
               <div class="carousel-tabs" aria-label="Project visual sections">
-                <button class="carousel-tab is-active" type="button" data-carousel-tab aria-pressed="true">Overview</button>
-                <button class="carousel-tab" type="button" data-carousel-tab aria-pressed="false">System Architecture</button>
+                <button class="carousel-tab is-active" type="button" data-carousel-tab aria-pressed="true">System Architecture</button>
                 <button class="carousel-tab" type="button" data-carousel-tab aria-pressed="false">Data Collection Procedure</button>
-                <button class="carousel-tab" type="button" data-carousel-tab aria-pressed="false">Run-Level Data Recording</button>
                 <button class="carousel-tab" type="button" data-carousel-tab aria-pressed="false">Dataset Organization</button>
                 <button class="carousel-tab" type="button" data-carousel-tab aria-pressed="false">Example Analysis Results</button>
               </div>
@@ -84,18 +81,10 @@
               <div class="carousel-viewport">
                 <div class="carousel-track">
                   <article class="carousel-slide is-active" data-carousel-slide>
-                    <h3>Overview</h3>
-                    <figure class="figure-card">
-                      <img src="assets/fig_overview.png" alt="Overview of TeleHum human-centered networked teleoperation.">
-                      <figcaption>TeleHum links human teleoperation, an OAI-based 5G communication path, ROS 2 behavior traces, gNB-side KPI logs, and post-task subjective ratings.</figcaption>
-                    </figure>
-                  </article>
-
-                  <article class="carousel-slide" data-carousel-slide>
                     <h3>System Architecture</h3>
                     <figure class="figure-card">
-                      <img src="assets/fig_system_architecture.png" alt="System architecture of the TeleHum platform.">
-                      <figcaption>The platform is organized across the Operator Host, OAI 5G Core Host, and gNB Host, connecting SO101 leader-arm input to MuJoCo follower simulation through ROS 2 and the OAI-based 5G link.</figcaption>
+                      <img src="assets/system.png" alt="System architecture of the TeleHum platform.">
+                      <figcaption>TeleHum is organized across experiment control and evaluation, teleoperation, data collection, and dataset output layers.</figcaption>
                     </figure>
                   </article>
 
@@ -104,14 +93,6 @@
                     <figure class="figure-card">
                       <img src="assets/fig_data_collection_procedure.png" alt="TeleHum data collection procedure.">
                       <figcaption>Each run consists of repeated MuJoCo pick-and-place cycles under one additional injected-delay condition.</figcaption>
-                    </figure>
-                  </article>
-
-                  <article class="carousel-slide" data-carousel-slide>
-                    <h3>Run-Level Data Recording</h3>
-                    <figure class="figure-card">
-                      <img src="assets/fig_run_level_recording.png" alt="Run-level data recording in TeleHum.">
-                      <figcaption>Each teleoperation run links gNB-side KPI logs, ROS 2 bag recordings, and post-task subjective ratings through shared run-level identifiers.</figcaption>
                     </figure>
                   </article>
 
@@ -138,10 +119,8 @@
               </button>
 
               <div class="carousel-dots" aria-label="Visual section selection">
-                <button class="carousel-dot is-active" type="button" data-carousel-dot aria-label="Show Overview"></button>
-                <button class="carousel-dot" type="button" data-carousel-dot aria-label="Show System Architecture"></button>
+                <button class="carousel-dot is-active" type="button" data-carousel-dot aria-label="Show System Architecture"></button>
                 <button class="carousel-dot" type="button" data-carousel-dot aria-label="Show Data Collection Procedure"></button>
-                <button class="carousel-dot" type="button" data-carousel-dot aria-label="Show Run-Level Data Recording"></button>
                 <button class="carousel-dot" type="button" data-carousel-dot aria-label="Show Dataset Organization"></button>
                 <button class="carousel-dot" type="button" data-carousel-dot aria-label="Show Example Analysis Results"></button>
               </div>
@@ -181,7 +160,7 @@
           <div class="column is-four-fifths">
             <h2 class="title is-3">arXiv</h2>
             <div class="content">
-              <p>For anonymous review, the paper is not uploaded to arXiv. This placeholder is reserved for a future public version after the review process.</p>
+              <p>This anonymous project page does not currently include an arXiv link. This placeholder is reserved for a future public version.</p>
             </div>
           </div>
         </div>
@@ -197,7 +176,7 @@
   title = {TeleHum: An Open-Source Platform and Dataset for Human-Centered Networked Robotic Teleoperation},
   author = {Anonymous Authors},
   year = {2026},
-  note = {Anonymous submission}
+  note = {Anonymous project page}
 }</code></pre>
           </div>
         </div>

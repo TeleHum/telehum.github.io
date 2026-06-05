@@ -132,19 +132,6 @@ a:hover {
   text-wrap: balance;
 }
 
-.publication-venue {
-  display: inline-flex;
-  margin: 0 0 1.35rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  padding: 0.35rem 0.75rem;
-  background: rgba(255, 255, 255, 0.86);
-  color: var(--muted);
-  box-shadow: var(--shadow-soft);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
 .publication-authors {
   margin-top: 1.45rem;
   color: var(--muted);
@@ -291,7 +278,7 @@ figcaption {
 
 .carousel-tabs {
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.45rem;
   margin: 0 0 1.1rem;
   border: 1px solid var(--border);
